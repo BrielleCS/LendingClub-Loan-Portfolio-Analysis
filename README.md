@@ -6,7 +6,7 @@
 ![Tableau Public](https://img.shields.io/badge/Tableau_Public-E97627?style=flat&logo=tableau&logoColor=white)
 
 ## Overview
-This analysis evaluates credit risk, loan performance, and portfolio concentration using over 2.2 million loans from the LendingClub dataset (2007–2018). The focus is on ~1.3 million finalized loans with `Fully Paid` or `Charged Off` status to measure realized portfolio outcomes.
+This analysis evaluates credit risk, loan performance, and portfolio concentration using over 2.2M loans from the LendingClub dataset (2007–2018). The focus is on approximately 1.3M finalized loans with `Fully Paid` or `Charged Off` status to measure realized portfolio outcomes.
 
 The analysis uses SQL for aggregation, Python for preprocessing and analysis, and Tableau for dashboard development to identify high-risk segments, evaluate risk-adjusted returns, and assess portfolio concentration.
 
