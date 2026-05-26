@@ -42,7 +42,7 @@ Is the portfolio heavily concentrated across specific borrower segments or geogr
 | **Executive Portfolio Health Overview** | Funded volume distribution, default rate, and cohort default trends | [**exposure_and_default.csv**](data/exposure_and_default.csv)<br>[**default_rate_pct_time.csv**](data/default_rate_pct_time.csv) | ![Plot](images/Executive_Portfolio_Health_Overview.png) |
 | **Default Contribution & Risk Distribution** | Pareto analysis of defaults and borrower risk segmentation | [**default_contribution_pareto.csv**](data/default_contribution_pareto.csv)<br>[**segment_exposure.csv**](data/segment_exposure.csv) | ![Plot](images/Default_Contribution_&_Risk_Distribution.png) |
 | **Credit Risk & Return Analysis** | Net return, yield efficiency, average interest rate, and risk-return tradeoff analysis | [**return_risk_int.csv**](data/return_risk_int.csv) | ![Plot](images/Profitability_&_Yield_Metrics.png) |
-| **Strategic Exposure & Diversification** | Geographic exposure, portfolio concentration, Lorenz curve, and Gini coefficient | [**segment_exposure.csv**](data/segment_exposure.csv)<br>[**lorenz_curve.csv**](data/lorenz_curve.csv)<br>[**gini_coefficient.csv**](data/gini_coefficient.csv) | ![Plot](images/Strategic_Exposure_&_Diversification.png) |
+| **Strategic Exposure & Diversification** | Geographic exposure, portfolio concentration, Lorenz curve, and Gini coefficient | [**segment_exposure.csv**](data/segment_exposure.csv)<br>[**lorenz_curve.zip**](data/lorenz_curve.zip)<br>[**gini_coefficient.csv**](data/gini_coefficient.csv) | ![Plot](images/Strategic_Exposure_&_Diversification.png) |
 
 > **Technical Note:** The Lorenz curve and Gini coefficient are computed in Python due to the large dataset size (~1.3M borrowers) and the need for borrower-level cumulative calculations. The resulting visualization is embedded in a Tableau dashboard.
 
@@ -173,7 +173,7 @@ LendingClub_Loan_Portfolio_Analysis/
 | |-- default_contribution_pareto.csv
 | |-- segment_exposure.csv
 | |-- return_risk_int.csv
-| |-- lorenz_curve.csv
+| |-- lorenz_curve.zip
 | |-- gini_coefficient.csv
 |
 |-- images/ (Saved dashboards)
