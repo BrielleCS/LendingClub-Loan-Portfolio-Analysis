@@ -40,7 +40,7 @@ How can portfolio credit risk be quantified using Probability of Default (PD), E
 
 ---
 
-## Visual Analytics & Dashboards
+## Visual Dashboards & Analytics 
 
 This analysis includes both Tableau dashboards and Python-generated credit risk analytics to provide a comprehensive view of portfolio performance.
 
@@ -89,7 +89,7 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 - **Average LGD**: 89.1%, indicating high and stable severity of loss upon default
 - **PD Range Across Grades**: 6.04% (Grade A) → 49.93% (Grade G)
 - **LGD Stability**: 88.8% – 89.7%, showing minimal variation across credit grades
-- **Expected Loss Range**: \\$439 (Grade A) → \$7,824 (Grade G), showing strong risk stratification across portfolio
+- **Expected Loss Range**: \$439 (Grade A) → \$7,824 (Grade G), showing strong risk stratification across portfolio
 
 ### Key Insights
 
@@ -99,7 +99,7 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 - **Risk vs. Return**: Grades A and B generated the strongest risk-adjusted returns (~5%) while lower grades experienced deteriorating profitability and materially higher default exposure.
 - **Portfolio Concentration**: Debt consolidation loans accounted for 61.27% of funded volume, while California represented the largest geographic exposure.
 - **Portfolio Inequality**: The Gini coefficient of 0.336 indicates moderate concentration risk across borrower exposure.
-- **Credit Risk Modeling (CECL Framework)**: Expected credit loss is primarily driven by variation in PD across credit grades, while LGD remains relatively stable (~89%). EL increases significantly from Grade A (\\$439) to Grade G (\\$7,824), reflecting strong risk stratification. EAD also rises with deteriorating credit quality, amplifying losses in lower-grade segments. Overall, total modeled Expected Loss is \$25,923, indicating concentrated credit risk in subprime grades.
+- **Credit Risk Modeling (CECL Framework)**: Expected credit loss is primarily driven by variation in PD across credit grades, while LGD remains relatively stable (~89%). EL increases significantly from Grade A (\$439) to Grade G (\$7,824), reflecting strong risk stratification. EAD also rises with deteriorating credit quality, amplifying losses in lower-grade segments. Overall, total modeled Expected Loss is \$25,923, indicating concentrated credit risk in subprime grades.
 
 ### Business Recommendations
 
@@ -108,7 +108,7 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 - Focus origination on Grades A–C, where risk-adjusted returns remain strongest, and tighten underwriting or pricing in lower grades where default risk outweighs yield.
 - Diversify lending across loan purposes and geographic regions to reduce concentration risk and improve portfolio resilience.
 - Incorporate EL outputs into ongoing portfolio monitoring to proactively identify segments with disproportionate credit risk, particularly Grades E–G where EL is significantly elevated.
-- Use CECL-driven expected loss estimates (ranging from \\$439 in Grade A to \\$7,824 in Grade G) as a quantitative input for capital allocation, pricing adjustments, and stress testing scenarios to improve forward-looking risk management.
+- Use CECL-driven expected loss estimates (ranging from \$439 in Grade A to \$7,824 in Grade G) as a quantitative input for capital allocation, pricing adjustments, and stress testing scenarios to improve forward-looking risk management.
 
 ---
 
@@ -214,7 +214,7 @@ LendingClub_Loan_Portfolio_Analysis/
 | |-- gini_coefficient.csv
 | |-- cecl_table.csv
 |
-|-- images/ (Saved dashboards & CECL Components Table/Plots)
+|-- images/ (Saved dashboards & CECL components table/plots)
 | |-- Executive_Portfolio_Health_Overview.png
 | |-- Default_Contribution_&_Risk_Distribution.png
 | |-- Profitability_&_Yield_Metrics.png
@@ -222,7 +222,6 @@ LendingClub_Loan_Portfolio_Analysis/
 | |-- cecl_table.png
 | |-- cecl_components.png
 | |-- cecl_expected_loss.png
-
 | 
 |-- notebook/
 | |-- LendingClub_Loan_Portfolio_Analysis.ipynb
