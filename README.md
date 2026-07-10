@@ -84,7 +84,7 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 
 - **Total EAD**: \$3.0B in remaining principal exposure across charged-off loans at the time of default
 - **PD Range Across Grades**: 6.04% (Grade A) → 49.93% (Grade G), showing increasing default frequency across grades
-- **EAD Range Across Grades**: \\$80.2M (Grade G) → $883.3M (Grade C), showing differences in total remaining defaulted exposure across grades
+- **EAD Range Across Grades**: \$80.2M (Grade G) → $883.3M (Grade C), showing differences in total remaining defaulted exposure across grades
 - **LGD Range Across Grades**: 88.81% (Grade F) → 89.67% (Grade A), showing relatively consistent realized loss severity across grades after recoveries
 - **Highest Risk Grade**: Grade G borrowers exhibited the highest observed default rate at 49.93% 
 
