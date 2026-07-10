@@ -1,4 +1,4 @@
-# LendingClub Loan Portfolio Analysis: CECL Credit Risk Modeling, Returns, and Portfolio Concentration
+# LendingClub Loan Portfolio Analysis: Credit Risk, Returns, and Portfolio Concentration
 
 ![Jupyter Notebook](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=flat&logo=jupyter&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat&logo=python&logoColor=white)
@@ -8,7 +8,7 @@
 ## Overview
 This analysis evaluates credit risk, loan performance, and portfolio concentration using over 2.2M loans from the LendingClub dataset (2007–2018). The focus is on approximately 1.3M finalized loans with `Fully Paid` or `Charged Off` status to measure realized portfolio outcomes.
 
-In addition to realized performance metrics, the analysis incorporates a Current Expected Credit Loss (CECL) credit risk framework by estimating Probability of Default (PD), Loss Given Default (LGD), Exposure at Default (EAD), and Expected Loss (EL) across credit grades. This enables forward-looking credit risk measurement alongside historical performance evaluation.
+A credit risk analysis is performed using Probability of Default (PD), Exposure at Default (EAD), and Loss Given Default (LGD) to evaluate observed default frequency, exposure at the time of default, and realized loss severity across credit grades. This analysis complements portfolio performance metrics by providing additional insight into credit risk differences across grades.
 
 The analysis uses SQL for aggregation, Python for preprocessing and modeling, and Tableau for dashboard development to identify high-risk segments, evaluate risk-adjusted returns, and assess portfolio concentration.
 
@@ -17,7 +17,7 @@ The analysis uses SQL for aggregation, Python for preprocessing and modeling, an
 - Identify borrower segments contributing most to realized defaults
 - Evaluate risk-adjusted returns across credit grades
 - Measure portfolio concentration across loan purposes and geographic regions
-- Estimate credit risk using a CECL-style framework (PD, LGD, EAD, and EL) across credit grades  
+- Analyze credit risk using PD, LGD, and EAD across credit grades  
 
 ---
 
@@ -29,14 +29,14 @@ How does loan performance vary across loan origination cohorts from 2007–2018,
 #### 2. Default Contribution & Risk Distribution
 Which grades contribute most to loan defaults, and how is risk distributed across subgrades and borrower segments?
 
-#### 3. Risk vs. Return Optimization
+#### 3. Risk vs. Return 
 How does net return performance vary across grades relative to default risk?
 
 #### 4. Portfolio Concentration & Diversification Risk
 Is the portfolio heavily concentrated across specific borrower segments or geographic regions?
 
-#### 5. Credit Risk Modeling & Expected Loss (CECL Framework)
-How can portfolio credit risk be quantified using Probability of Default (PD), Exposure at Default (EAD), and Loss Given Default (LGD), and how does Expected Loss (EL) vary across borrower grades?
+#### 5. Historical Credit Risk Analysis
+How do observed credit risk characteristics vary across borrower grades, and what factors contribute to differences in default probability, exposure at default, and loss severity?
 
 ---
 
@@ -55,13 +55,12 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 
 > **Technical Note:** The Lorenz curve and Gini coefficient are computed in Python due to the large dataset size (~1.3M borrowers) and the need for borrower-level cumulative calculations. The resulting visualization is embedded in a Tableau dashboard.
 
-### CECL Credit Risk Analytics (Python)
+### Credit Risk Analytics (Python)
 
 | Output | Description | Preview |
 |---|---|---|
-| **CECL Components Table** | Summary of credit risk metrics by grade including PD, LGD, EAD, EL | ![Table](images/cecl_table.png) |
-| **CECL Components Breakdown** | Multi-metric visualization of PD, LGD, and EAD by grade (dual-axis chart)  | ![Plot](images/cecl_components.png) |
-| **Expected Loss by Grade** | Expected Loss distribution across grades | ![Plot](images/cecl_expected_loss.png) |
+| **Credit Risk Summary Table** | Summary of credit risk metrics by grade including PD, EAD, and LGD | ![Table](images/historical_credit_risk_table.png) |
+| **Credit Risk Components Plot** | Multi-metric visualization of PD, EAD, and LGD by grade (dual-axis chart) | ![Plot](images/credit_risk_components.png) |
 ---
 
 ## Executive Summary
@@ -73,7 +72,7 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 - **Portfolio Default Rate (Charge-Off Rate)**: 21.55%
 - **Peak Cohort Default Rate**: 26.61% (July 2016 origination cohort)
 - **Risk Concentration (Pareto Analysis)**: 18 of 35 subgrades accounted for 80% of realized defaults
-- **Highest Risk Credit Segment**: Renters with Grade G loans - 54.87% default rate
+- **Highest Risk Borrower Segment**: Renters with Grade G loans - 54.87% default rate
 - **Inequality Index**: 0.336 Gini Coefficient
 - **Realized Net Return**: \$543.4M
 - **Average Portfolio Interest Rate**: 13.65%
@@ -81,15 +80,13 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 - **Top Loan Purpose Exposure**: Debt Consolidation - 61.27% share, \$11.9B exposure
 - **Top State Concentration**: California - $2.9B exposure, 19.6% default rate
 
-### Credit Risk Modeling (CECL Framework) Metrics
+### Historical Credit Risk Metrics
 
-- **Total Expected Loss (EL)**: \$25,923 (modeled portfolio credit loss using PD × LGD × EAD framework)
-- **Average PD**: 29.41% across borrower grades
-- **Average EAD**: \$12,832 per loan across defaulted exposures
-- **Average LGD**: 89.1%, indicating high and stable severity of loss upon default
-- **PD Range Across Grades**: 6.04% (Grade A) → 49.93% (Grade G)
-- **LGD Stability**: 88.8% – 89.7%, showing minimal variation across credit grades
-- **Expected Loss Range**: \$439 (Grade A) → \$7,824 (Grade G), showing strong risk stratification across portfolio
+- **Total EAD**: \$3.0B in remaining principal exposure across charged-off loans at the time of default
+- **PD Range Across Grades**: 6.04% (Grade A) → 49.93% (Grade G), showing increasing default frequency across grades
+- **EAD Range Across Grades**: \\$80.2M (Grade G) → $883.3M (Grade C), showing differences in total remaining defaulted exposure across grades
+- **LGD Range Across Grades**: 88.81% (Grade F) → 89.67% (Grade A), showing relatively consistent realized loss severity across grades after recoveries
+- **Highest Risk Grade**: Grade G borrowers exhibited the highest observed default rate at 49.93% 
 
 ### Key Insights
 
@@ -99,20 +96,22 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 - **Risk vs. Return**: Grades A and B generated the strongest risk-adjusted returns (~5%) while lower grades experienced deteriorating profitability and materially higher default exposure.
 - **Portfolio Concentration**: Debt consolidation loans accounted for 61.27% of funded volume, while California represented the largest geographic exposure.
 - **Portfolio Inequality**: The Gini coefficient of 0.336 indicates moderate concentration risk across borrower exposure.
-- **Credit Risk Modeling (CECL Framework)**: Expected credit loss is primarily driven by variation in PD across credit grades, while LGD remains relatively stable (~89%). EL increases significantly from Grade A (\$439) to Grade G (\$7,824), reflecting strong risk stratification. EAD also rises with deteriorating credit quality, amplifying losses in lower-grade segments. Overall, total modeled Expected Loss is \$25,923, indicating concentrated credit risk in subprime grades.
+- **Credit Risk Drivers:** Credit risk differences across grades were primarily driven by variation in PD, which increased substantially from Grade A (6.04%) to Grade G (49.93%). LGD remained relatively consistent across grades at approximately 89%, indicating that differences in credit performance were primarily related to default frequency rather than loss severity after default. EAD highlights where remaining default exposure was concentrated, with higher-exposure grades representing larger outstanding principal balances at the time of default.
 
 ### Business Recommendations
 
-- Implement automated monitoring and back-testing of underwriting models to detect deteriorating loan quality earlier and reduce future default exposure.
-- Apply targeted lending restrictions and risk-based pricing for high-risk borrower combinations rather than relying solely on broad credit grade limits.
-- Focus origination on Grades A–C, where risk-adjusted returns remain strongest, and tighten underwriting or pricing in lower grades where default risk outweighs yield.
-- Diversify lending across loan purposes and geographic regions to reduce concentration risk and improve portfolio resilience.
-- Incorporate EL outputs into ongoing portfolio monitoring to proactively identify segments with disproportionate credit risk, particularly Grades E–G where EL is significantly elevated.
-- Use CECL-driven expected loss estimates (ranging from \$439 in Grade A to \$7,824 in Grade G) as a quantitative input for capital allocation, pricing adjustments, and stress testing scenarios to improve forward-looking risk management.
+- Implement automated monitoring of underwriting performance and historical credit risk trends to identify deteriorating loan quality and elevated default risk earlier.
+- Strengthen underwriting controls for lower credit grades where observed default rates increase substantially, particularly among Grade G borrowers.
+- Apply risk-based pricing strategies across credit grades to ensure loan yields appropriately compensate for observed default risk and loss severity.
+- Use historical PD trends by grade to monitor changes in borrower credit performance and identify segments requiring additional risk review.
+- Monitor EAD concentration to understand where remaining default exposure is concentrated and prioritize risk management efforts toward higher-exposure segments.
+- Continue evaluating recovery performance and LGD trends to identify opportunities to improve collection strategies and reduce realized loss severity.
+- Evaluate lending strategies using historical risk-adjusted performance across grades while maintaining appropriate pricing and underwriting standards for higher-risk grades.
+- Diversify portfolio exposure across loan purposes, geographic regions, and borrower characteristics to reduce concentration risk and improve portfolio resilience.
 
 ---
 
-## Analysis Workflow (Dashboard Architecture & CECL Framework)
+## Analysis Workflow (Dashboard Architecture & Credit Risk Analysis)
 
 ### Data Preparation
 - Data Exploration, Filtering, and Cleaning
@@ -138,12 +137,18 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 - Portfolio Concentration & Inequality (Lorenz Curve & Gini Coefficient)
 - Portfolio Concentration by Loan Purpose
 
-### Credit Risk Modeling & Expected Loss (CECL Framework)
-- PD, EAD, and LGD Estimation
-- EL Calculation
-- CECL Credit Risk Summary Table
-- CECL Risk Components by Grade (plot)
-- Expected Loss by Grade (plot)
+### Historical Credit Risk Analysis
+- Probability of Default (PD)
+- Exposure at Default (EAD)
+- Loss Given Default (LGD)
+- Credit Risk Summary Table by Grade
+- Credit Risk Metrics by Grade (plot)
+
+---
+
+## Future Extension: Forward-Looking Credit Risk Modeling
+
+A future extension will build upon this analysis by developing a forward-looking Current Expected Credit Loss (CECL) framework using the full LendingClub dataset, incorporating non-finalized loans and additional predictive risk factors to estimate future expected credit losses. The future analysis will also explore machine learning techniques, including XGBoost, to estimate PD using multiple borrower characteristics, compare model-based risk predictions with traditional credit grade segmentation, incorporate FICO score segmentation for comparative risk analysis, and evaluate portfolio resilience through stress testing under alternative credit risk scenarios.
 
 ---
 
@@ -177,7 +182,7 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 - Datetime conversion
 - Lorenz curve construction and visualization
 - Gini coefficient calculation
-- CECL credit risk modeling
+- Credit risk analysis using PD, EAD, and LGD
 
 ### SQL
 - CTEs
@@ -189,10 +194,10 @@ This analysis includes both Tableau dashboards and Python-generated credit risk 
 - KPI visualization
 
 ### Analytics Concepts
-- Credit risk analysis and modeling (CECL framework: PD, LGD, EAD, EL)  
+- Credit risk analysis using PD, EAD, and LGD
 - Cohort analysis
 - Pareto analysis
-- Risk-return optimization
+- Risk-return analysis
 - Portfolio concentration analysis
 - Loan distribution inequality (Lorenz curve & Gini coefficient)
 
@@ -212,19 +217,18 @@ LendingClub_Loan_Portfolio_Analysis/
 | |-- return_risk_int.csv
 | |-- lorenz_curve.zip
 | |-- gini_coefficient.csv
-| |-- cecl_table.csv
+| |-- credit_risk_table.csv
 |
-|-- images/ (Saved dashboards & CECL components table/plots)
+|-- images/ (Saved dashboards & credit risk components table/plots)
 | |-- Executive_Portfolio_Health_Overview.png
 | |-- Default_Contribution_&_Risk_Distribution.png
 | |-- Profitability_&_Yield_Metrics.png
 | |-- Strategic_Exposure_&_Diversification.png
-| |-- cecl_table.png
-| |-- cecl_components.png
-| |-- cecl_expected_loss.png
+| |-- historical_credit_risk_table.png
+| |-- credit_risk_components.png
 | 
 |-- notebook/
-| |-- LendingClub_Loan_Portfolio_Analysis.ipynb
+| |-- LendingClub_Portfolio_Analysis_Credit_Risk_and_Returns.ipynb
 |
 |-- README.md
 ```
